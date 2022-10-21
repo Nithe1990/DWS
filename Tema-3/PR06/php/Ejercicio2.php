@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicio 1</title>
+    <title>Ejercicio 2</title>
 </head>
 <body>
 <header>
@@ -68,6 +68,10 @@
                 )
             ),
         );
+
+        $resultadosLiga = array(
+            "Puntos" 
+        );
         echo "<table border>";
             echo "<tr>";
                 echo "<th>Equipos</th>";
@@ -75,12 +79,15 @@
                 echo "<th>Goles a favor</th>";
                 echo "<th>Goles en contra</th>";
             echo "</tr>";
-            foreach ($liga as $valor => $indice) {
+            foreach ($liga as $local => $partido) {
                 echo "<tr>";
-                    echo "<td>".$valor."</td>";
+                    echo "<td>".$local."</td>";
+                    foreach ($partido as $visitante => $resultados) {
+                        
+                    }
                 echo "</tr>";
             }
-        echo "</table border>";
+        echo "</table>";
     ?>
 </body>
 </html>
