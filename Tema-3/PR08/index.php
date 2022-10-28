@@ -96,16 +96,18 @@
                 }
             ?>
             <?
-                if (seleccionado("combobox") && enviado()) {
+                
+                if (existe("combobox") && seleccionado("combobox") && enviado()) {
                     ?>
                         <span style="color: red;">Debe elegir una opción</span>
                     <?
                 }
+                
             ?>
             <div class="input-group mb-3">
                 <label for="combo" class="input-group-text">Elige una opción</label>
                 <select class="form-select" id="combo" name="combobox">
-                    <option value="0" selected>Seleccione</option>
+                    <option value="0">Seleccione</option>
                     <option value="1">Uno</option>
                     <option value="2">Dos</option>
                     <option value="3">Tres</option>
@@ -137,25 +139,50 @@
                 <label class="form-check-label" for="check6">Check 6</label>
             </div>
             <?
-                if(contarChecks("checks[]") < 1 || contarChecks("checks[]") > 3 && enviado()){
+                //si se ha enviado y existe algún check
+                if(enviado("checks") && existe("checks")){
+                    //máximo 3 checks marcados y mínimo 1
+                    if(contarChecks("checks") < 1 && contarChecks("checks") > 3){
+                        ?>
+                            <span style="color: red;">Debe elegir como mínimo una opción y como máximo 3</span>
+                        <?
+                    }
+                }
+            ?>
+            <?
+                if(vacio("telefono") && enviado()){
                     ?>
-                        <span style="color: red;">Debe elegigir como mínimo una opción y como máximo 3</span>
+                        <span style="color: red;">Debe introducir un número de teléfono</span>
                     <?
                 }
             ?>
             <div class="form-floating mb-3">
-                <input type="number" class="form-control" name="" id="telefono" placeholder="">
+                <input type="number" class="form-control" name="telefono" id="telefono" placeholder="">
                 <label for="telefono">Nº Teléfono</label>
             </div>
+            <?
+                if (vacio("mail") && enviado()){
+                    ?>
+                        <span style="color: red;">Debe introducir un correo electrónico</span>
+                    <?
+                }
+            ?>
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" name="" id="mail" placeholder="">
+                <input type="email" class="form-control" name="mail" id="mail" placeholder="">
                 <label for="mail">Email</label>
             </div>
+            <?
+                if (vacio("contrasenna") && enviado()){
+                    ?>
+                        <span style="color: red;">Debe introducir una contraseña</span>
+                    <?
+                }
+            ?>
             <div class="form-floating mb-3">
                 <input type="password" class="form-control" name="" id="contrasenna" placeholder="">
                 <label for="contrasenna">Contraseña</label>
             </div>
-            <input class="form-control" type="file" id="fichero">
+            <input class="form-control" type="file" id="fichero" name="fichero">
             <input type="submit" name="enviar" class="btn btn-primary" value="Enviar">
         </form>
     </div>
