@@ -47,10 +47,24 @@
     echo "<br/> Cadena: " .$cadena2." y patrón: " .$patron."Match: ". preg_match($patron,$cadena2);
     echo "<br/> Cadena: " .$cadena3." y patrón: " .$patron."Match: ". preg_match($patron,$cadena3);
 
-    //
     $patron = '/^<\/?\D+\d*>/';
-    $cadena = "<html>";
+    $cadena = "<html>Dentro de un html</html>";
     $cadena1 = "</html>";
     echo "<br/> Cadena: " .str_replace('<',"&lt;",$cadena)." y patrón: " .$patron."Match: ". preg_match($patron,$cadena);
     echo "<br/> Cadena: " .$cadena1." y patrón: " .$patron."Match: ". preg_match($patron,$cadena1);
+    echo "<br/>";
+    preg_match_all($patron, $cadena, $array);
+    foreach ($array[0] as $value) {
+        echo str_replace('<',"&lt",$value)."<br/>";
+    }
+
+    ///Expresiones regulares en arrays
+    $lista = array('Maria','Criado','25','Zamora','Calle Requejo 25','492');
+    $patron = '/^\d{1,3}$/';
+    $numeros = preg_grep($patron,$lista);
+    print_r($numeros);
+
+    $sustituir = "numero";
+    echo "<br/>";
+    print_r(preg_replace($patron,$sustituir,$lista));
 ?>
