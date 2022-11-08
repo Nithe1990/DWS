@@ -84,9 +84,14 @@
             }
         ?>"/>
         <?
-            $patron = "/^[0-9]{2}[\/|\-][0-9]{2}[|][0-9]{4}$/";
+            $patron = "/^[0-9]{2}[\/|\-][0-9]{2}[\/|\-][0-9]{4}$/";
+            $hoy = time();
             if(vacio("nacimiento") && enviado()){
                 ?><span style="color: red;">&nbsp;Debe introducirse su fecha de nacimiento</span><?
+            }elseif(!preg_match($patron, $_REQUEST["nacimiento"])){
+                ?><span style="color: red;">&nbsp;La fecha debe tener formaro dd/mm/yyyy o dd-mm-yyyy</span><?
+                $fechaIntroducida = strtotime(date("d-m-Y", $_REQUEST["nacimiento"]));
+                
             }
         ?><br/>
         <label for="dni">D.N.I.: </label>
