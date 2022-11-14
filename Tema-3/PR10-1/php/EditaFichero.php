@@ -28,7 +28,7 @@
                     fclose($archivo);
                     echo $contenido;
                 ?>
-            </textarea>
+            </textarea><br>
             <input type="submit" value="Modificar" name="modificar">
         </form>
     </div>

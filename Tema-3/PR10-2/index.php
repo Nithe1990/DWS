@@ -24,26 +24,29 @@
             </div>
         </div>
     </header>
-    <form action="./EligeFichero.php" method="post" enctype="multipart/form-data" class="container list-group">
-        <input type="text" name="fichero" id="fichero">
-        <input type="submit" value="Editar" name="editar">
-        <input type="submit" value="Leer" name="leer">
-        <?
-            if(isset($_REQUEST["editar"])){
-                if(empty($_REQUEST["fichero"])){
-                    echo "<span style = 'color: red'>Debe introducirse un nombre y extensión de fichero</span>";
-                }else{
-                    header('Location: ./php/EditaFichero.php?fichero='.$_REQUEST["fichero"]);
-                    exit();
-                }
+    <?
+        $archivo = fopen("notas.csv", "r");
+        $datos = array();
+        while($linea = fgetcsv($archivo, filesize("notas.csv"), ';')){
+            array_push($datos,$linea);
+        }
+        fclose($archivo);
+        var_dump($datos);
+        echo "<table border>";
+            echo "<tr>";
+                echo "<th>Alumno</th>";
+                echo "<th>Nota 1</th>";
+                echo "<th>Nota 2</th>";
+                echo "<th>Nota 3</th>";
+            echo "</tr>";
+        foreach ($datos as $indice => $fila) {
+            echo "<tr>";
+            foreach($fila as $columna => $celda){
+                echo "<td>".$celda."</td>";
             }
-
-            if(isset($_REQUEST["leer"])){
-                $archivo = fopen($_REQUEST["fichero"], "r");
-            }
-            
-        ?>
-    </div>
+            echo "</tr>";
+        }
+    ?>
     <footer class="text-center">
         Cristian Calvo
     </footer>
