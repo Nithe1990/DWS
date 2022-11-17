@@ -31,19 +31,22 @@
             array_push($datos,$linea);
         }
         fclose($archivo);
-        var_dump($datos);
+        
         echo "<table border>";
             echo "<tr>";
                 echo "<th>Alumno</th>";
                 echo "<th>Nota 1</th>";
                 echo "<th>Nota 2</th>";
                 echo "<th>Nota 3</th>";
+                echo "<th>Editar</th>";
             echo "</tr>";
         foreach ($datos as $indice => $fila) {
             echo "<tr>";
             foreach($fila as $columna => $celda){
                 echo "<td>".$celda."</td>";
             }
+            $n = $indice+1;
+            echo "<td><input type='submit' value='Editar".$n."' name='editar'></td>";
             echo "</tr>";
         }
     ?>
