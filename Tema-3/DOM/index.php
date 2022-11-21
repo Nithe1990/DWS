@@ -25,32 +25,23 @@
         </div>
     </header>
     <?
-        $archivo = fopen("notas.csv", "r");
-        $datos = array();
-        while($linea = fgetcsv($archivo, filesize("notas.csv"), ';')){
-            array_push($datos,$linea);
-        }
-        fclose($archivo);
-        
-        echo "<table border>";
-            echo "<tr>";
-                echo "<th>Alumno</th>";
-                echo "<th>Nota 1</th>";
-                echo "<th>Nota 2</th>";
-                echo "<th>Nota 3</th>";
-                echo "<th>Editar</th>";
-            echo "</tr>";
-        foreach ($datos as $indice => $fila) {
-            echo "<tr>";
-            foreach($fila as $columna => $celda){
-                echo "<td>".$celda."</td>";
+        $dom = new DOMDocument();
+        $dom->load('departamento.xml');
+        //leerRaíz
+        $raiz = $dom->childNodes[0];
+        echo "Raíz: ".$raiz->nodeName;
+
+        //número de hijos de la raíz
+        foreach($raiz->childNodes as $elementos){
+            if($elementos->nodeType == 1){
+                echo "<br>".$elementos->nodeName;
+                foreach($elementos as $datos){
+                    if($datos->nodeType == 1){
+                        echo "<br>Nombre: ".$datos->nodeName." Valor: ".$datos->nodeValue;
+                    }
+                }
             }
-            $n = $indice+1;
-            echo "<td><input type='submit' value='Editar".$n."' name='editar'></td>";
-            
-            echo "</tr>";
         }
-        echo "</table>";
     ?>
     <footer class="text-center">
         Cristian Calvo
