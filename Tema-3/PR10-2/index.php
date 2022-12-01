@@ -9,7 +9,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="">
     <link rel="icon" type="image/png" sizes="16x16" href="">
     <link rel="manifest" href="">
-    <title></title>
+    <title>Práctica 10 - 2</title>
 </head>
 <body>
     <header>

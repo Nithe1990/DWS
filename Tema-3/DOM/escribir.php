@@ -1,17 +1,23 @@
 <?
-    $dom = new DOMDocument("1.0, utf-8");
-    $dom->formatOutput;
-    $raiz = $dom->createElement("Mundial");
-    $dom->appendChild($raiz);
-
-    $equipo = $dom->createElement("Equipo");
-    $raiz->appendChild($equipo);
-    $nombre = $dom->createElement("Nombre");
-    
-
+    $dom = new DOMDocument();
+    $dom->load("mundial.xml");
+    $raiz = $dom->childNodes[0];
+    $nuevo = "Joao";
+    $cambiar = false;
+    foreach ($raiz->childNodes as $elementos) {
+        if ($elementos->nodeType ==1) {
+            foreach($elementos->childNodes as $datos){
+                if($datos->nodeType==1 && $datos->nodeValue=="Francia"){
+                    $cambiar = true;
+                    
+                }
+                if($cambiar && $datos->nodeName=="Entrenador"){
+                    $elementos->replaceChild($nuevo, $datos);
+                }
+            }
+        }
+    }
     if($dom->save("mundial.xml")){
-        echo "mundial.xml se ha guardado satisfactoriamente";
-    }else{
-        echo "ha habido un error durante la escritura del fichero";
+        echo "Guardado";
     }
 ?>
