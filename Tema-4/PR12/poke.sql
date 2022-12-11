@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS "poke";
+CREATE TABLE IF NOT EXISTS "poke" (
+	"ID"	INTEGER NOT NULL,
+	"Nombre"	VARCHAR,
+	"Peso"	DECIMAL,
+	"Altura"	DECIMAL,
+	"Encuentro"	DATE,
+	PRIMARY KEY("ID" AUTOINCREMENT)
+);
+INSERT INTO "poke" VALUES (1,'Pikachu',6,0.4,'2018-04-12');
